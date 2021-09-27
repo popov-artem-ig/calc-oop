@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"calc-oop/structures"
 	"fmt"
 	"strconv"
 )
@@ -19,13 +18,24 @@ func IsFloat(s string) bool {
 	return false
 }
 
-func DebugLog(currentSymbol string, stack structures.Stack, queue structures.Queue) {
-	fmt.Println("current symbol")
-	fmt.Println(currentSymbol)
-	fmt.Println("stack")
-	fmt.Println(stack.All())
-	fmt.Println("queue")
-	fmt.Println(queue.All())
+func IsContainsFunc(x string) bool {
+	arr := []string{"*", "/", "+", "-"}
+	for _, n := range arr {
+		if x == n {
+			return true
+		}
+	}
+	return false
+}
+
+func DebugLog(data ICustomType) {
+	v, err := data.ToString()
+	if err != nil {
+		fmt.Println("logging: " + v)
+	} else {
+		fmt.Println("logging error:")
+		fmt.Println(err)
+	}
 }
 
 

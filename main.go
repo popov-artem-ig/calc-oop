@@ -2,7 +2,7 @@ package main
 
 import (
 	"bufio"
-	"encoding/json"
+	"calc-oop/structures"
 	"fmt"
 	"os"
 	"strings"
@@ -17,21 +17,19 @@ func main() {
 			fmt.Println(err)
 			os.Exit(1)
 		}
-		fmt.Println(str)
+		fmt.Println("'"+str+"'")
 
-		//validator.Validate()
-		rpnArr, err := Convert(str)
+		notation := structures.ReversePolishNotation{}
+		rpn := notation.New(str)
 
-		if err != nil {
-			fmt.Println(err)
-			os.Exit(1)
-		}
 
 		fmt.Println("reverse polish notation:")
-		fmt.Println(rpnArr)
-		fmt.Println("calculate...")
+		rpnString, _ := rpn.ToString()
+		fmt.Println(rpnString)
 
-		result, err := Calculate(rpnArr)
+
+		fmt.Println("calculate...")
+		result, err := rpn.Calc()
 
 		if err != nil {
 			fmt.Println(err)
@@ -42,21 +40,9 @@ func main() {
 	}
 }
 
-func init() {
-	file, _ := os.Open("conf.json")
-	defer file.Close()
-	decoder := json.NewDecoder(file)
-	configuration := Configuration{}
-	err := decoder.Decode(&configuration)
-	if err != nil {
-		fmt.Println("error load config:", err)
-	}
-	fmt.Println(configuration.IsDebug) // output: [UserA, UserB]
-}
-
 func start() {
 	fmt.Println("Calculation of an arbitrary notation with output in reverse polish notation")
-	fmt.Println("\\t example:\\t 10*(2+5)-14/(1+2*(1+2)) \\n (1 + 2) * 4 + 3 \\n 2.2 * 10 - 15 \\n -5 + 5 * 6")
+	fmt.Println("example:\n 10*(2+5)-14/(1+2*(1+2)) \n (1 + 2) * 4 + 3 \n 2.2 * 10 - 15 \n -5 + 5 * 6")
 	fmt.Println("input expression and press Enter")
 }
 
@@ -67,6 +53,7 @@ func readInputStr() (string, error) {
 	in := bufio.NewReader(os.Stdin)
 	scanStr, err := in.ReadString('\n')
 	fmt.Println("clear space...")
+	scanStr = strings.TrimSuffix(scanStr, "\n")
 	scanStr = strings.Replace(scanStr, " ", "", -1)
 	fmt.Println("replace ',' to '.'...")
 	scanStr = strings.Replace(scanStr, ",", ".", -1)
