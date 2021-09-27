@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"calc-oop/data_structures"
+	"calc-oop/structures"
 	"fmt"
 	"strconv"
 )
@@ -19,7 +19,7 @@ func IsFloat(s string) bool {
 	return false
 }
 
-func DebugLog(currentSymbol string, stack data_structures.Stack, queue data_structures.Queue) {
+func DebugLog(currentSymbol string, stack structures.Stack, queue structures.Queue) {
 	fmt.Println("current symbol")
 	fmt.Println(currentSymbol)
 	fmt.Println("stack")

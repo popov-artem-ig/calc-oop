@@ -1,7 +1,7 @@
 package main
 
 import (
-	"calc-oop/data_structures"
+	"calc-oop/structures"
 	"calc-oop/utils"
 	"fmt"
 )
@@ -11,11 +11,11 @@ type Converter struct {
 }
 
 func Convert(str string) ([]string, error) {
-	np := 0                   // Инкремент открытых скобок
-	stackOp := data_structures.Stack{}          // Стек операторов
-	resQueue := data_structures.Queue{}    // Результирующая очередь
-	strIn := str	          // Выражение для разбора
-	hoarder := ""   		  // Накопитель для сборки/обработки дробных и больших чисел
+	np := 0                        // Инкремент открытых скобок
+	stackOp := structures.Stack{}  // Стек операторов
+	resQueue := structures.Queue{} // Результирующая очередь
+	strIn := str                   // Выражение для разбора
+	hoarder := ""                  // Накопитель для сборки/обработки дробных и больших чисел
 
 	for i := range strIn {
 		c := strIn[i]

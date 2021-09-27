@@ -1,14 +1,14 @@
 package main
 
 import (
-	"calc-oop/data_structures"
+	"calc-oop/structures"
 	"calc-oop/utils"
 	"fmt"
 	"strconv"
 )
 
 func Calculate(expressionRpn []string) (float64, error) {
-	stackOp := data_structures.Stack{}      // Стек операндов
+	stackOp := structures.Stack{} // Стек операндов
 
 	for i := range expressionRpn {
 		s := expressionRpn[i]
@@ -37,7 +37,7 @@ func Calculate(expressionRpn []string) (float64, error) {
 	return result, nil
 }
 
-func evaluateOperator(operator string, stackOp data_structures.Stack) (float64, data_structures.Stack, error) {
+func evaluateOperator(operator string, stackOp structures.Stack) (float64, structures.Stack, error) {
 	af, bf := 0.0, 0.0
 	var err error
 	b := stackOp.Pop()
