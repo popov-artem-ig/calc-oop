@@ -92,9 +92,9 @@ func convert(str string) ([]string, error) {
 		c := strIn[i]
 		//utils.DebugLog(&stackOp)
 		//utils.DebugLog(&resQueue)
-		fmt.Println(string(c))
-		fmt.Println(stackOp)
-		fmt.Println(resQueue)
+		//fmt.Println(string(c))
+		//fmt.Println(stackOp)
+		//fmt.Println(resQueue)
 
 		if utils.IsDigit(c) || c == '.' {
 			hoarder += string(c)
